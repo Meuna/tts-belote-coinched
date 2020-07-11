@@ -1,0 +1,163 @@
+<Defaults>
+  <Text class="Bold24" fontSize="24" fontStyle="bold" />
+  <Text class="Bold12" fontSize="12" fontStyle="bold" />
+  <Text class="Text12" fontSize="12" />
+  <Image class="SuitImage" width="100" height="100" />
+  <ToggleButton class="Text30" fontSize="30" fontStyle="bold" />
+  <ToggleButton class="Text20" fontSize="20" fontStyle="bold" />
+  <ToggleButton class="Text14" fontSize="14" fontStyle="bold" />
+</Defaults>
+
+<Panel id="contractPanel"
+    visibility="Host"
+    color="#EBEBEB"
+    width="785"
+    height="430"
+    showAnimation="FadeIn"
+    hideAnimation="FadeOut"
+    allowDragging="true"
+    returnToOriginalPositionWhenReleased="false">
+  <Text class="Bold24" alignment="UpperLeft" offsetXY="20 -20">Pick a contract ...</Text>
+  <ToggleGroup id="biddingPlayer" value="White">
+    <HorizontalLayout
+        rectAlignment="UpperLeft"
+        width="600"
+        height="50"
+        offsetXY="20 -60"
+        spacing="5">
+      <ToggleButton class="Text20" text="White bid" color="White" onClick="setToggleGroupValue" id="biddingPlayer_White" />
+      <ToggleButton class="Text20" text="Orange bid" color="#F89869" onClick="setToggleGroupValue" id="biddingPlayer_Orange" />
+      <ToggleButton class="Text20" text="Green bid" color="#64D95E" onClick="setToggleGroupValue" id="biddingPlayer_Green" />
+      <ToggleButton class="Text20" text="Purple bid" color="#BE64F4" onClick="setToggleGroupValue" id="biddingPlayer_Purple" />
+    </HorizontalLayout>
+  </ToggleGroup>
+  <ToggleGroup id="contractSuite" value="clubs">
+    <HorizontalLayout
+        rectAlignment="UpperCenter"
+        width="745"
+        height="120"
+        offsetXY="0 -120"
+        spacing="5">
+      <ToggleButton onClick="setToggleGroupValue" id="contractSuite_clubs">
+          <image class="SuitImage" image="clubs_icon" /></ToggleButton>
+      <ToggleButton onClick="setToggleGroupValue" id="contractSuite_diamonds">
+          <image class="SuitImage" image="diamonds_icon" /></ToggleButton>
+      <ToggleButton onClick="setToggleGroupValue" id="contractSuite_hearts">
+          <image class="SuitImage" image="hearts_icon" /></ToggleButton>
+      <ToggleButton onClick="setToggleGroupValue" id="contractSuite_spades">
+          <image class="SuitImage" image="spades_icon" /></ToggleButton>
+      <ToggleButton text="All trump" class="Text30" onClick="setToggleGroupValue" id="contractSuite_ALLTRUMP" />
+      <ToggleButton text="No trump" class="Text30" onClick="setToggleGroupValue" id="contractSuite_NOTRUMP" />
+    </HorizontalLayout>
+  </ToggleGroup>
+  <ToggleGroup id="contractLevel" value="80">
+    <HorizontalLayout
+        rectAlignment="UpperCenter"
+        width="745"
+        height="50"
+        offsetXY="0 -250"
+        spacing="5">
+      <ToggleButton class="Text20" text="80" onClick="setToggleGroupValue" id="contractLevel_80" />
+      <ToggleButton class="Text20" text="90" onClick="setToggleGroupValue" id="contractLevel_90" />
+      <ToggleButton class="Text20" text="100" onClick="setToggleGroupValue" id="contractLevel_100" />
+      <ToggleButton class="Text20" text="110" onClick="setToggleGroupValue" id="contractLevel_110" />
+      <ToggleButton class="Text20" text="120" onClick="setToggleGroupValue" id="contractLevel_120" />
+      <ToggleButton class="Text20" text="130" onClick="setToggleGroupValue" id="contractLevel_130" />
+      <ToggleButton class="Text20" text="140" onClick="setToggleGroupValue" id="contractLevel_140" />
+      <ToggleButton class="Text20" text="150" onClick="setToggleGroupValue" id="contractLevel_150" />
+      <ToggleButton class="Text20" text="160" onClick="setToggleGroupValue" id="contractLevel_160" />
+      <ToggleButton class="Text20" text="170" onClick="setToggleGroupValue" id="contractLevel_170" />
+      <ToggleButton class="Text20" text="Cpt" onClick="setToggleGroupValue" id="contractLevel_CAPOT" />
+      <ToggleButton class="Text20" text="Gnl" onClick="setToggleGroupValue" id="contractLevel_GENERAL" />
+    </HorizontalLayout>
+  </ToggleGroup>
+  <ToggleGroup id="coincheLevel" value="0">
+    <HorizontalLayout
+        rectAlignment="UpperLeft"
+        width="400"
+        height="50"
+        offsetXY="20 -310"
+        spacing="5">
+      <ToggleButton class="Text14" text="Uncoinched" onClick="setToggleGroupValue" id="coincheLevel_0" />
+      <ToggleButton class="Text14" text="Coinched !" onClick="setToggleGroupValue" id="coincheLevel_1" />
+      <ToggleButton class="Text14" text="Over coinched !!" onClick="setToggleGroupValue" id="coincheLevel_2" />
+    </HorizontalLayout>
+  </ToggleGroup>
+  <Button text="Play !"
+      rectAlignment="LowerRight"
+      width="100"
+      height="40"
+      fontSize="25"
+      fontStyle="bold"
+      color="Green"
+      offsetXY="-20 20"
+      onClick="playContract"/>
+  <Button text="X"
+      width="20"
+      height="20"
+      rectAlignment="UpperRight"
+      color="#BBBBBB"
+      textColor="#FFFFFF"
+      onClick="hideContractUI" />
+</Panel>
+
+<Panel id="scoreBoard"
+    color="#EBEBEB"
+    rectAlignment="MiddleRight"
+    width="170"
+    height="500"
+    offsetXY="0 50">
+  <TableLayout
+      rectAlignment="UpperCenter"
+      width="170"
+      height="50">
+    <Row>
+        <Cell><Text class="Bold12" id="teamName_TEAM1" onClick="editTeamName">WhiteGreen</Text></Cell>
+        <Cell><Text class="Bold12" id="teamName_TEAM2" onClick="editTeamName">OrangePurple</Text></Cell>
+    </Row>
+    <Row>
+        <Cell><Text class="Bold12">0</Text></Cell>
+        <Cell><Text class="Bold12">0</Text></Cell>
+    </Row>
+  </TableLayout>
+  <TableLayout id="sbRounds"
+      rectAlignment="UpperCenter"
+      width="170"
+      height ="50"
+      offsetXY="0 -60">
+  </TableLayout>
+  <Panel
+      rectAlignment="UpperCenter"
+      width="170"
+      height="40"
+      offsetXY="0 40">
+    <InputField id="teamNameInput" onEndEdit="commitTeamName" />
+  </Panel>
+  <Panel
+      visibility="Host"
+      color="#EBEBEB"
+      rectAlignment="LowerCenter"
+      width="170"
+      height="210"
+      offsetXY="0 -120">
+    <Text class="Bold24" alignment="UpperLeft" offsetXY="20 0">Host tools</Text>
+    <GridLayout
+          rectAlignment="UpperCenter"
+          width="160"
+          height="160"
+          spacing="5"
+          offsetXY="0 -30"
+          constraint="FixedColumnCount"
+          constraintCount="2"
+          cellSize="80 40">
+      <Button text="Unlock cards" onClick="unlockAllCard" />
+      <Button text="Undo trick" onClick="undoTrick" />
+      <Button text="Restart round" onClick="restartRound" />
+      <Button text="Cancel round" onClick="cancelRound" />
+      <Button text="Change dealer" onClick="changeDealer" />
+      <Button text="Reset scores" onClick="resetScores" />
+      <Button text="Open contract UI" onClick="showContractUI" />
+      <Button text="Contract failed ?" onClick="earlyScoreFailedContract" />
+    </GridLayout>
+  </Panel>
+</Panel>
